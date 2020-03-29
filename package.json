@@ -1,0 +1,25 @@
+{
+	"name": "reddit-clone",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "https://github.com/lstuartfry/reddit-clone.git",
+	"author": "Lukas Stuart-Fry <lstuartfry@gmail.com>",
+	"license": "MIT",
+	"engines": {
+		"node": "12.13.1",
+		"yarn": "1.22.0"
+	},
+	"scripts": {
+		"client": "cd client && yarn start",
+		"server": "nodemon server/index.js",
+		"dev": "concurrently --kill-others \" yarn client\" \" yarn server\""
+	},
+	"devDependencies": {
+		"concurrently": "^5.1.0",
+		"nodemon": "^2.0.2"
+	},
+	"dependencies": {
+		"axios": "^0.19.2",
+		"express": "^4.17.1"
+	}
+}
