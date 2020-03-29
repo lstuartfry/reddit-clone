@@ -2,7 +2,10 @@ const express = require('express');
 const router = express.Router();
 const redditAPI = require('../api');
 
-const fetchPosts = async path => await redditAPI.get(`${path}.json`);
+const fetchPosts = async path => {
+	const response = await redditAPI.get(`${path}.json`);
+	return response;
+};
 
 router
 	.get('/hot', async (req, res) => {
@@ -16,7 +19,7 @@ router
 	.get('/new', async (req, res) => {
 		try {
 			const response = await fetchPosts('/new');
-			console.log('response in server is  : ', response);
+			res.send(response.data);
 		} catch (error) {
 			console.log('error in redditAPI is : ', error);
 		}
@@ -24,7 +27,7 @@ router
 	.get('/random', async (req, res) => {
 		try {
 			const response = await fetchPosts('/random');
-			console.log('response in server is  : ', response);
+			res.send(response.data);
 		} catch (error) {
 			console.log('error in redditAPI is : ', error);
 		}
@@ -32,7 +35,7 @@ router
 	.get('/top', async (req, res) => {
 		try {
 			const response = await fetchPosts('/top');
-			console.log('response in server is  : ', response);
+			res.send(response.data);
 		} catch (error) {
 			console.log('error in redditAPI is : ', error);
 		}

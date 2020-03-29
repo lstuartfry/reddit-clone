@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-	baseURL: '',
+	baseURL: '/reddit',
 	headers: {
 		'Content-Type': 'application/json',
 	},
@@ -9,7 +9,7 @@ const instance = axios.create({
 
 const API = {
 	get: async (path, params) => {
-		const response = await instance.get(path, { params }, defaultHeaders);
+		const response = await instance.get(path, { params });
 		console.log('response in front end API is : ', response);
 		return response;
 	},

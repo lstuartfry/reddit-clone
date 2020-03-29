@@ -1,7 +1,7 @@
 {
 	"name": "reddit-clone",
 	"version": "1.0.0",
-	"main": "index.js",
+	"main": "server/index.js",
 	"repository": "https://github.com/lstuartfry/reddit-clone.git",
 	"author": "Lukas Stuart-Fry <lstuartfry@gmail.com>",
 	"license": "MIT",
