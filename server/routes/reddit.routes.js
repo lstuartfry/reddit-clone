@@ -4,6 +4,7 @@ const router = express.Router();
 const redditAPI = require('../api');
 
 const fetchPosts = async (path, params) => {
+	console.log('params in fetchPost are : ', params);
 	const response = await redditAPI.get(`/r${path}.json`, {
 		params: {
 			limit: 20,
@@ -44,9 +45,7 @@ router
 			const response = await fetchPosts(
 				`/${query.subreddit}/comments/${query.id}`,
 				{
-					params: {
-						limit: 50,
-					},
+					limit: 100,
 				}
 			);
 			res.send(response.data);

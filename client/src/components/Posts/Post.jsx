@@ -24,14 +24,14 @@ const Post = ({ post, setView }) => {
 			<div className={styles.commentList}>
 				{comments.map(comment => (
 					<div key={comment.data.id} className={styles.comment}>
-						{comment.data.body}
+						{comment.data.author} - {comment.data.body}
 					</div>
 				))}
 			</div>
 		);
 	};
 	return (
-		<div className={styles.post}>
+		<div>
 			<div className={styles.postHeading}>
 				<div className={styles.postThumbnail}>
 					<img src={post.data.thumbnail} />
