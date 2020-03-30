@@ -4,13 +4,13 @@ const defaultHeaders = {
 	'Content-Type': 'application/json',
 };
 
-const instance = axios.create({
-	baseURL: '/reddit',
-});
-
 const API = {
 	get: async (path, params) => {
-		const response = await instance.get(path, { params }, defaultHeaders);
+		const response = await axios.get(
+			`/reddit${path}`,
+			{ params },
+			defaultHeaders
+		);
 		return response.data;
 	},
 };
