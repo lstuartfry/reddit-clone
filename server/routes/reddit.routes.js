@@ -4,7 +4,6 @@ const router = express.Router();
 const redditAPI = require('../api');
 
 const fetchPosts = async (path, params) => {
-	console.log('params in fetchPost are : ', params);
 	const response = await redditAPI.get(`/r${path}.json`, {
 		params: {
 			limit: 20,
