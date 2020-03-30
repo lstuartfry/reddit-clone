@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import API from 'api';
-import styles from './styles';
+import styles from './styles.scss';
 
 const Post = ({ post, setView }) => {
 	const [comments, setComments] = useState([]);

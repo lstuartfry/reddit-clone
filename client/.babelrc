@@ -3,5 +3,15 @@
 		["babel-plugin-styled-components", { "pure": true, "ssr": false }],
 		"react-hot-loader/babel"
 	],
-	"presets": ["@babel/env", "@babel/react"]
+	"presets": [
+		[
+			"@babel/env",
+			{
+				"targets": {
+					"node": "current"
+				}
+			}
+		],
+		"@babel/react"
+	]
 }

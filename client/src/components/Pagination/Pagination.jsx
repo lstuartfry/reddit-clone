@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './styles';
+import styles from './styles.scss';
 
 const Pagination = ({ onClick, after, before }) => (
 	<div className={styles.pagination}>
