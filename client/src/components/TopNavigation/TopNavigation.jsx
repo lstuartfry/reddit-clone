@@ -33,12 +33,6 @@ const TopNavigation = ({ onChange, route }) => (
 			<Button isActive={route === '/new'} onClick={() => onChange('/new')}>
 				new
 			</Button>
-			<Button
-				isActive={route === '/random'}
-				onClick={() => onChange('/random')}
-			>
-				random
-			</Button>
 		</div>
 	</div>
 );

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import API from 'api';
 import TopNavigation from '../TopNavigation/TopNavigation';
+import Pagination from '../Pagination/Pagination';
 import Posts from '../Posts/Posts';
 
 const App = () => {
@@ -17,6 +18,11 @@ const App = () => {
 		setData(response.data);
 	};
 
+	const onPaginationClick = async params => {
+		const response = await API.get(route, { count: 20, ...params });
+		setData(response.data);
+	};
+
 	useEffect(() => {
 		const fetchInitialPosts = async () => {
 			const response = await API.get(route);
@@ -25,10 +31,24 @@ const App = () => {
 		fetchInitialPosts();
 	}, []);
 
+	const renderPagination = () => {
+		if (view === 'list' && !!data) {
+			return (
+				<Pagination
+					onClick={onPaginationClick}
+					after={data.after}
+					before={data.before}
+				/>
+			);
+		}
+	};
+
 	return (
 		<div>
 			<TopNavigation route={route} onChange={onRouteChange} />
+			{renderPagination()}
 			<Posts data={data} view={view} setView={setView} />
+			{renderPagination()}
 		</div>
 	);
 };

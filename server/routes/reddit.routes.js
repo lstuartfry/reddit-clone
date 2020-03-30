@@ -1,16 +1,22 @@
 const express = require('express');
 const router = express.Router();
+
 const redditAPI = require('../api');
 
 const fetchPosts = async (path, params) => {
-	const response = await redditAPI.get(`${path}.json`, params);
+	const response = await redditAPI.get(`/r${path}.json`, {
+		params: {
+			limit: 20,
+			...params,
+		},
+	});
 	return response;
 };
 
 router
 	.get('/hot', async (req, res) => {
 		try {
-			const response = await fetchPosts('/r/all/hot');
+			const response = await fetchPosts('/all/hot', req.query);
 			res.send(response.data);
 		} catch (error) {
 			console.log('error in redditAPI is : ', error);
@@ -18,15 +24,7 @@ router
 	})
 	.get('/new', async (req, res) => {
 		try {
-			const response = await fetchPosts('/r/all/new');
-			res.send(response.data);
-		} catch (error) {
-			console.log('error in redditAPI is : ', error);
-		}
-	})
-	.get('/random', async (req, res) => {
-		try {
-			const response = await fetchPosts('/r/random');
+			const response = await fetchPosts('/all/new', req.query);
 			res.send(response.data);
 		} catch (error) {
 			console.log('error in redditAPI is : ', error);
@@ -34,7 +32,7 @@ router
 	})
 	.get('/top', async (req, res) => {
 		try {
-			const response = await fetchPosts('/all/top');
+			const response = await fetchPosts('/all/top', req.query);
 			res.send(response.data);
 		} catch (error) {
 			console.log('error in redditAPI is : ', error);
@@ -44,7 +42,12 @@ router
 		try {
 			const { query } = req;
 			const response = await fetchPosts(
-				`/r/${query.subreddit}/comments/${query.id}`
+				`/${query.subreddit}/comments/${query.id}`,
+				{
+					params: {
+						limit: 50,
+					},
+				}
 			);
 			res.send(response.data);
 		} catch (error) {
