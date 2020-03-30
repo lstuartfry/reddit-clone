@@ -1,35 +1,36 @@
+import { hot } from 'react-hot-loader/root';
 import React, { useState, useEffect } from 'react';
 
 import API from 'api';
 import TopNavigation from '../TopNavigation/TopNavigation';
-// import PostList from '../PostList/PostList';
-
-import styles from './styles';
+import Posts from '../Posts/Posts';
 
 const App = () => {
 	const [route, setRoute] = useState('/hot');
-	const [posts, setPosts] = useState([]);
+	const [data, setData] = useState(null);
+	const [view, setView] = useState('list');
 
 	const onRouteChange = async newRoute => {
 		setRoute(newRoute);
+		setView('list');
 		const response = await API.get(newRoute);
-		console.log('response in component is : ', response);
+		setData(response.data);
 	};
 
 	useEffect(() => {
 		const fetchInitialPosts = async () => {
 			const response = await API.get(route);
-			console.log('initial response is : ', response);
+			setData(response.data);
 		};
 		fetchInitialPosts();
 	}, []);
 
 	return (
-		<div className={styles.app}>
+		<div>
 			<TopNavigation route={route} onChange={onRouteChange} />
-			{/* <PostList posts={posts} /> */}
+			<Posts data={data} view={view} setView={setView} />
 		</div>
 	);
 };
 
-export default App;
+export default hot(App);

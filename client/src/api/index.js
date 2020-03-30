@@ -10,8 +10,7 @@ const instance = axios.create({
 const API = {
 	get: async (path, params) => {
 		const response = await instance.get(path, { params });
-		console.log('response in front end API is : ', response);
-		return response;
+		return response.data;
 	},
 };
 

@@ -1,0 +1,43 @@
+.list > div {
+	display: flex;
+	align-items: end;
+	padding: 8px;
+	border: 2px solid transparent;
+
+	&:hover {
+		border: 2px solid #0fade9;
+		cursor: pointer;
+	}
+}
+
+.postThumbnail {
+	display: flex;
+	width: 100px;
+
+	img {
+		min-width: 100%;
+	}
+}
+
+.postTitle {
+	font-size: 16px;
+	margin-left: 8px;
+}
+
+.postHeading {
+	display: flex;
+	align-items: end;
+	font-weight: bold;
+	margin-bottom: 12px;
+}
+
+.commentList {
+	display: flex;
+	flex-direction: column;
+}
+
+.comment {
+	border: 1px solid black;
+	padding: 8px;
+	margin: 4px 0px;
+}

@@ -9,7 +9,4 @@ app.listen(PORT, () => {
 
 app.use(express.static('../client/public'));
 
-app.use(express.json()); // Parse JSON bodies
-app.use(express.urlencoded()); // Parse URL-encoded bodies
-
 app.use('/reddit', redditRouter);
